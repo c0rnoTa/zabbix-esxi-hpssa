@@ -1,0 +1,17 @@
+<ConfigRoot>
+    <service id='0200'>
+        <id>zabbixMonitoring</id>
+        <rule id='0000'>
+            <direction>inbound</direction>
+            <protocol>tcp</protocol>
+            <port type='dst'>10050</port>
+        </rule>
+        <rule id='0001'>
+            <direction>outbound</direction>
+            <protocol>tcp</protocol>
+            <port type='dst'>10051</port>
+        </rule>
+        <enabled>true</enabled>
+        <required>false</required>
+    </service>
+</ConfigRoot>
