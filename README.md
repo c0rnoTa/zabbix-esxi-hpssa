@@ -41,6 +41,7 @@ Add this lines **before** `exit 0` string.
 # Enable firewall ruleset for zabbix agent
 cp /vmfs/volumes/DATASTOREGE1/.zabbix/conf/zabbixAgent.xml /etc/vmware/firewall/zabbixAgent.xml
 esxcli network firewall refresh
+esxcli network firewall ruleset set --enabled true --ruleset-id=zabbixMonitoring
 ``` 
 
 After that all operations on ESXi host are done. You can disable SSH service on it.
