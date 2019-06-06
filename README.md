@@ -5,6 +5,8 @@ Zabbix template for ESXi HP SmartArray monitoring
 * zabbixAgent.xml - firewall ruleset for ESXi
 
 ### Installation
+
+#### Part 1. ESXi configuration
 Download and install HPE Utilities Offline Bundle for ESXi <your version>. You can find it on https://support.hpe.com .
 
 1. For example, you can download esxi6.0-util-bundle-3.4.0-12.zip for ESXi 6.0.
@@ -42,3 +44,8 @@ esxcli network firewall refresh
 ``` 
 
 After that all operations on ESXi host are done. You can disable SSH service on it.
+
+#### Part 2. Zabbix Server configuration
+
+1. Donwload from repo and import to zabbix server Template ESXi HP Smart Array.
+2. Add template to host configuration.
