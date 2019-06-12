@@ -6,16 +6,23 @@ Zabbix template for ESXi HP SmartArray monitoring
 
 ### Installation
 
-#### Part 1. ESXi configuration
+#### Part 1. HP SSACLI installation on ESXi
 Download and install HPE Utilities Offline Bundle for ESXi <your version>. You can find it on https://support.hpe.com .
 
-1. For example, you can download esxi6.0-util-bundle-3.4.0-12.zip for ESXi 6.0.
+1. For example, you can download hp-HPUtil-esxi6.0-bundle-2.4-5.zip for ESXi 6.0.
 2. Enable SSH connection to ESXi host.
-3. Copy esxi6.0-util-bundle-3.4.0-12.zip to ESXi host using `scp`.
-4. Install util-bundle with `esxcli software vib install -d "/path/to/esxi6.0-util-bundle-3.4.0-12.zip"`. 
+3. Copy hp-HPUtil-esxi6.0-bundle-2.4-5.zip to ESXi host using `scp`.
+4. Install util-bundle with `esxcli software vib install -d "/path/to/hp-HPUtil-esxi6.0-bundle-2.4-5.zip"`. 
 Reboot the host. After that you should have `esxcli hpssacli` namespace.
 5. Check `esxcli hpssacli` namespace by running `esxcli hpssacli cmd -q 'version'`
 It should return you installed HPSSACLI version.
+
+Caution
+> Different versions of HP offline bundle utilites are support different controllers of HP Smart Array devices. As newer controller do you have, as newer version of offline bundle utilites you should download.
+> Early versions of HP offline bundle provide `hpssacli` but new one provides `ssacli`. It is the same utils but must be used for different controllers. 
+> Otherwise you will get response **'No controllers detected.'**
+
+#### Part 2. Zabbix Agent installation on ESXi
 
 Download and install Zabbix Agent binary for ESXi. 
 You have to grab Zabbix agent for **Linux 2.6** amd64 build from http://www.zabbix.com/download.php
@@ -46,7 +53,7 @@ esxcli network firewall ruleset set --enabled true --ruleset-id=zabbixMonitoring
 
 After that all operations on ESXi host are done. You can disable SSH service on it.
 
-#### Part 2. Zabbix Server configuration
+#### Part 3. Zabbix Server configuration
 
 1. Donwload from repo and import to zabbix server Template ESXi HP Smart Array.
 2. Add template to host configuration.
